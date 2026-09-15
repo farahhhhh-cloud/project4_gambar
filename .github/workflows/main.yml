@@ -22,8 +22,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Disable Android New DSL
-        run: echo "android.newDsl=false" >> android/gradle.properties
+      - name: Fix Gradle version
+        run: |
+          sed -i 's/gradle-8.10.2-bin.zip/gradle-8.14.0-bin.zip/' android/gradle/wrapper/gradle-wrapper.properties
 
       - name: Build APK
         run: flutter build apk --release
